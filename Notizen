@@ -1,0 +1,413 @@
+BGM 03 – Level 1-1
+Erst laden… und dann
+
+Write 1 <= 00
+Write 0 <= 02
+Write 0 <= 00
+Write 1 <= 70
+Write 2 <= 7f
+Write 0 <= 06
+Write 0 <= 00
+
+BGM 04 nach BGM 03
+
+Write 1 <= 01
+Write 0 <= 02
+Write 0 <= 00
+Write 1 <= 70
+Write 2 <= 7f
+Write 0 <= 06
+Write 0 <= 00
+
+BGM 05 nach BGM 04
+
+Write 1 <= 06
+Write 0 <= 02
+Write 0 <= 00
+Write 1 <= 70
+Write 2 <= 7f
+Write 0 <= 06
+Write 0 <= 00
+
+
+Wenn kein neues laden notwendig ist BGM 05 laden
+7f143e jsr $1460     [7f1460] A:0006 X:00ff Y:0005 S:02f1 D:0000 DB:7f nvMXdIzC
+7f1460 sep #$30               A:0006 X:00ff Y:0005 S:02ef D:0000 DB:7f nvMXdIzC
+7f1462 ldx #$00               A:0006 X:00ff Y:0005 S:02ef D:0000 DB:7f nvMXdIzC
+7f1464 phx                    A:0006 X:0000 Y:0005 S:02ef D:0000 DB:7f nvMXdIZC
+7f1465 plb                    A:0006 X:0000 Y:0005 S:02ee D:0000 DB:7f nvMXdIZC
+7f1466 rts                    A:0006 X:0000 Y:0005 S:02ef D:0000 DB:00 nvMXdIZC
+7f1441 pha                    A:0006 X:0000 Y:0005 S:02f1 D:0000 DB:00 nvMXdIZC
+7f1442 ply                    A:0006 X:0000 Y:0005 S:02f0 D:0000 DB:00 nvMXdIZC
+7f1443 jsl $0c8006   [0c8006] A:0006 X:0000 Y:0006 S:02f1 D:0000 DB:00 nvMXdIzC
+0c8006 jmp $8191     [0c8191] A:0006 X:0000 Y:0006 S:02ee D:0000 DB:00 nvMXdIzC
+0c8191 phx                    A:0006 X:0000 Y:0006 S:02ee D:0000 DB:00 nvMXdIzC
+0c8192 ldx $2140     [002140] A:0006 X:0000 Y:0006 S:02ed D:0000 DB:00 nvMXdIzC
+SPC Read 0
+0c8195 bne $8192     [0c8192] A:0006 X:0000 Y:0006 S:02ed D:0000 DB:00 nvMXdIZC
+0c8197 sty $2141     [002141] A:0006 X:0000 Y:0006 S:02ed D:0000 DB:00 nvMXdIZC
+SPC Write 1 <= 06
+0c819a lda #$02               A:0006 X:0000 Y:0006 S:02ed D:0000 DB:00 nvMXdIZC
+0c819c sta $2140     [002140] A:0002 X:0000 Y:0006 S:02ed D:0000 DB:00 nvMXdIzC
+SPC Write 0 <= 02
+0c819f jmp $81b3     [0c81b3] A:0002 X:0000 Y:0006 S:02ed D:0000 DB:00 nvMXdIzC
+0c81b3 cmp $2140     [002140] A:0002 X:0000 Y:0006 S:02ed D:0000 DB:00 nvMXdIzC
+SPC Read 0
+0c81b6 bne $81b3     [0c81b3] A:0002 X:0000 Y:0006 S:02ed D:0000 DB:00 nvMXdIzC
+
+
+Jetzt BGM 06 laden
+7f143c php                    A:0005 X:00ff Y:0006 S:02f3 D:0000 DB:7f nvMXdIzC
+7f143d phb                    A:0005 X:00ff Y:0006 S:02f2 D:0000 DB:7f nvMXdIzC
+7f143e jsr $1460     [7f1460] A:0005 X:00ff Y:0006 S:02f1 D:0000 DB:7f nvMXdIzC
+7f1460 sep #$30               A:0005 X:00ff Y:0006 S:02ef D:0000 DB:7f nvMXdIzC
+7f1462 ldx #$00               A:0005 X:00ff Y:0006 S:02ef D:0000 DB:7f nvMXdIzC
+7f1464 phx                    A:0005 X:0000 Y:0006 S:02ef D:0000 DB:7f nvMXdIZC
+7f1465 plb                    A:0005 X:0000 Y:0006 S:02ee D:0000 DB:7f nvMXdIZC
+7f1466 rts                    A:0005 X:0000 Y:0006 S:02ef D:0000 DB:00 nvMXdIZC
+7f1441 pha                    A:0005 X:0000 Y:0006 S:02f1 D:0000 DB:00 nvMXdIZC
+7f1442 ply                    A:0005 X:0000 Y:0006 S:02f0 D:0000 DB:00 nvMXdIZC
+7f1443 jsl $0c8006   [0c8006] A:0005 X:0000 Y:0005 S:02f1 D:0000 DB:00 nvMXdIzC
+0c8006 jmp $8191     [0c8191] A:0005 X:0000 Y:0005 S:02ee D:0000 DB:00 nvMXdIzC
+0c8191 phx                    A:0005 X:0000 Y:0005 S:02ee D:0000 DB:00 nvMXdIzC
+0c8192 ldx $2140     [002140] A:0005 X:0000 Y:0005 S:02ed D:0000 DB:00 nvMXdIzC
+SPC Read 0
+0c8195 bne $8192     [0c8192] A:0005 X:0000 Y:0005 S:02ed D:0000 DB:00 nvMXdIZC
+0c8197 sty $2141     [002141] A:0005 X:0000 Y:0005 S:02ed D:0000 DB:00 nvMXdIZC
+SPC Write 1 <= 05
+0c819a lda #$02               A:0005 X:0000 Y:0005 S:02ed D:0000 DB:00 nvMXdIZC
+0c819c sta $2140     [002140] A:0002 X:0000 Y:0005 S:02ed D:0000 DB:00 nvMXdIzC
+SPC Write 0 <= 02
+0c819f jmp $81b3     [0c81b3] A:0002 X:0000 Y:0005 S:02ed D:0000 DB:00 nvMXdIzC
+0c81b3 cmp $2140     [002140] A:0002 X:0000 Y:0005 S:02ed D:0000 DB:00 nvMXdIzC
+SPC Read 0
+0c81b6 bne $81b3     [0c81b3] A:0002 X:0000 Y:0005 S:02ed D:0000 DB:00 nvMXdIzC
+0c81b3 cmp $2140     [002140] A:0002 X:0000 Y:0005 S:02ed D:0000 DB:00 nvMXdIzC
+SPC Read 0
+
+
+Jetzt BGM 0E laden
+
+7f15a0 sta $0044     [7f0044] A:0002 X:00ff Y:000e S:02f5 D:0000 DB:7f nvMXdIzC
+7f15a3 phy                    A:0002 X:00ff Y:000e S:02f5 D:0000 DB:7f nvMXdIzC
+7f15a4 jsr $1422     [7f1422] A:0002 X:00ff Y:000e S:02f4 D:0000 DB:7f nvMXdIzC
+7f1422 php                    A:0002 X:00ff Y:000e S:02f2 D:0000 DB:7f nvMXdIzC
+7f1423 phb                    A:0002 X:00ff Y:000e S:02f1 D:0000 DB:7f nvMXdIzC
+7f1424 jsr $1460     [7f1460] A:0002 X:00ff Y:000e S:02f0 D:0000 DB:7f nvMXdIzC
+7f1460 sep #$30               A:0002 X:00ff Y:000e S:02ee D:0000 DB:7f nvMXdIzC
+7f1462 ldx #$00               A:0002 X:00ff Y:000e S:02ee D:0000 DB:7f nvMXdIzC
+7f1464 phx                    A:0002 X:0000 Y:000e S:02ee D:0000 DB:7f nvMXdIZC
+7f1465 plb                    A:0002 X:0000 Y:000e S:02ed D:0000 DB:7f nvMXdIZC
+7f1466 rts                    A:0002 X:0000 Y:000e S:02ee D:0000 DB:00 nvMXdIZC
+7f1427 pha                    A:0002 X:0000 Y:000e S:02f0 D:0000 DB:00 nvMXdIZC
+7f1428 jsl $0c8009   [0c8009] A:0002 X:0000 Y:000e S:02ef D:0000 DB:00 nvMXdIZC
+0c8009 jmp $818b     [0c818b] A:0002 X:0000 Y:000e S:02ec D:0000 DB:00 nvMXdIZC
+0c818b lda #$03               A:0002 X:0000 Y:000e S:02ec D:0000 DB:00 nvMXdIZC
+0c818d jsr $81dc     [0c81dc] A:0003 X:0000 Y:000e S:02ec D:0000 DB:00 nvMXdIzC
+0c81dc ldx $2140     [002140] A:0003 X:0000 Y:000e S:02ea D:0000 DB:00 nvMXdIzC
+SPC Read 0
+0c81df bne $81dc     [0c81dc] A:0003 X:0000 Y:000e S:02ea D:0000 DB:00 nvMXdIZC
+0c81e1 cmp #$01               A:0003 X:0000 Y:000e S:02ea D:0000 DB:00 nvMXdIZC
+0c81e3 beq $81f6     [0c81f6] A:0003 X:0000 Y:000e S:02ea D:0000 DB:00 nvMXdIzC
+0c81e5 sta $2140     [002140] A:0003 X:0000 Y:000e S:02ea D:0000 DB:00 nvMXdIzC
+SPC Write 0 <= 03
+0c81e8 sty $2141     [002141] A:0003 X:0000 Y:000e S:02ea D:0000 DB:00 nvMXdIzC
+SPC Write 1 <= 0e
+0c81eb cmp $2140     [002140] A:0003 X:0000 Y:000e S:02ea D:0000 DB:00 nvMXdIzC
+SPC Read 0
+0c81ee bne $81eb     [0c81eb] A:0003 X:0000 Y:000e S:02ea D:0000 DB:00 nvMXdIzC
+0c81eb cmp $2140     [002140] A:0003 X:0000 Y:000e S:02ea D:0000 DB:00 nvMXdIzC
+SPC Read 0
+0c81ee bne $81eb     [0c81eb] A:0003 X:0000 Y:000e S:02ea D:0000 DB:00 nvMXdIzC
+0c81eb cmp $2140     [002140] A:0003 X:0000 Y:000e S:02ea D:0000 DB:00 nvMXdIzC
+SPC Read 0
+0c81ee bne $81eb     [0c81eb] A:0003 X:0000 Y:000e S:02ea D:0000 DB:00 nvMXdIzC
+0c81eb cmp $2140     [002140] A:0003 X:0000 Y:000e S:02ea D:0000 DB:00 nvMXdIzC
+SPC Read 0
+
+Das erste was mit dem SPC geschieht
+
+0080a5 sta $7f0000,x [7ffffe] A:0200 X:fffe Y:0000 S:02fe D:0000 DB:00 NvMxdIzC
+0080a9 inx                    A:0200 X:fffe Y:0000 S:02fe D:0000 DB:00 NvMxdIzC
+0080aa bne $80a5     [0080a5] A:0200 X:ffff Y:0000 S:02fe D:0000 DB:00 NvMxdIzC
+0080a5 sta $7f0000,x [7fffff] A:0200 X:ffff Y:0000 S:02fe D:0000 DB:00 NvMxdIzC
+0080a9 inx                    A:0200 X:ffff Y:0000 S:02fe D:0000 DB:00 NvMxdIzC
+0080aa bne $80a5     [0080a5] A:0200 X:0000 Y:0000 S:02fe D:0000 DB:00 nvMxdIZC
+0080ac jsr $81b1     [0081b1] A:0200 X:0000 Y:0000 S:02fe D:0000 DB:00 nvMxdIZC
+0081b1 sep #$30               A:0200 X:0000 Y:0000 S:02fc D:0000 DB:00 nvMxdIZC
+0081b3 jsl $0c8000   [0c8000] A:0200 X:0000 Y:0000 S:02fc D:0000 DB:00 nvMXdIZC
+0c8000 jmp $8015     [0c8015] A:0200 X:0000 Y:0000 S:02f9 D:0000 DB:00 nvMXdIZC
+0c8015 jsr $824c     [0c824c] A:0200 X:0000 Y:0000 S:02f9 D:0000 DB:00 nvMXdIZC
+0c824c sep #$30               A:0200 X:0000 Y:0000 S:02f7 D:0000 DB:00 nvMXdIZC
+0c824e lda #$cb               A:0200 X:0000 Y:0000 S:02f7 D:0000 DB:00 nvMXdIZC
+0c8250 sta $10       [000010] A:02cb X:0000 Y:0000 S:02f7 D:0000 DB:00 NvMXdIzC
+0c8252 lda #$83               A:02cb X:0000 Y:0000 S:02f7 D:0000 DB:00 NvMXdIzC
+0c8254 sta $11       [000011] A:0283 X:0000 Y:0000 S:02f7 D:0000 DB:00 NvMXdIzC
+0c8256 lda #$0c               A:0283 X:0000 Y:0000 S:02f7 D:0000 DB:00 NvMXdIzC
+0c8258 sta $12       [000012] A:020c X:0000 Y:0000 S:02f7 D:0000 DB:00 nvMXdIzC
+0c825a rep #$20               A:020c X:0000 Y:0000 S:02f7 D:0000 DB:00 nvMXdIzC
+0c825c lda #$bbaa             A:020c X:0000 Y:0000 S:02f7 D:0000 DB:00 nvmXdIzC
+0c825f cmp $2140     [002140] A:bbaa X:0000 Y:0000 S:02f7 D:0000 DB:00 NvmXdIzC
+SPC Read 0
+SPC Read 1
+0c8262 bne $825f     [0c825f] A:bbaa X:0000 Y:0000 S:02f7 D:0000 DB:00 nvmXdIZC
+0c8264 sep #$20               A:bbaa X:0000 Y:0000 S:02f7 D:0000 DB:00 nvmXdIZC
+0c8266 rep #$10               A:bbaa X:0000 Y:0000 S:02f7 D:0000 DB:00 nvMXdIZC
+0c8268 ldy #$0000             A:bbaa X:0000 Y:0000 S:02f7 D:0000 DB:00 nvMxdIZC
+0c826b lda #$01               A:bbaa X:0000 Y:0000 S:02f7 D:0000 DB:00 nvMxdIZC
+0c826d sta $2141     [002141] A:bb01 X:0000 Y:0000 S:02f7 D:0000 DB:00 nvMxdIzC
+SPC Write 1 <= 01
+0c8270 lda [$10],y   [0c83cb] A:bb01 X:0000 Y:0000 S:02f7 D:0000 DB:00 nvMxdIzC
+0c8272 sta $16       [000016] A:bb00 X:0000 Y:0000 S:02f7 D:0000 DB:00 nvMxdIZC
+0c8274 sta $2142     [00214
+
+
+Also 
+ 
+7f1428 jsl $0c8009   [0c8009] A:0002 X:0000 Y:000e S:02ef D:0000 DB:00 nvMXdIZC
+
+Y-Register gibt den Song an
+
+
+http://romhack.wikia.com/wiki/SNES_header
+
+hexdump Super\ Turrican\ \(Europe\).sfc -C -v > hexdump
+
+http://jumbocactuarx27.blogspot.de/2013/08/how-to-enhance-snes-game-with-msu-1.html
+
+http://helmet.kafuka.org/msu1.htm
+
+BGM:
+00 Intro
+01 Title Jingle
+02 Credits
+03 Level 1-1
+
+0c818b: Y Gewählte BGM in den SPC laden
+0c8191: Y Song im SPC anspringen?
+
+Calls Stack:
+$7f1428 -> $0c8009 -> $818b
+$7f1443 -> $0c8006 -> $8191
+$0c8000 -> $0c8015 -> $824c
+
+
+
+[7f160d] A:0000 X:00ff Y:002a S:02f5 D:0000 DB:7f nvMXdIZC
+7f1595 ldy $002d     [7f002d] A:0000 X:00ff Y:002a S:02f5 D:0000 DB:7f nvMXdIZC
+7f1598 lda $1624,y   [7f1629] A:0000 X:00ff Y:0005 S:02f5 D:0000 DB:7f nvMXdIzC
+7f159b cmp $0044     [7f0044] A:0000 X:00ff Y:0005 S:02f5 D:0000 DB:7f nvMXdIZC
+7f159e beq $15a8     [7f15a8] A:0000 X:00ff Y:0005 S:02f5 D:0000 DB:7f NvMXdIzc
+7f15a0 sta $0044     [7f0044] A:0000 X:00ff Y:0005 S:02f5 D:0000 DB:7f NvMXdIzc
+7f15a3 phy                    A:0000 X:00ff Y:0005 S:02f5 D:0000 DB:7f NvMXdIzc
+7f15a4 jsr $1422     [7f1422] A:0000 X:00ff Y:0005 S:02f4 D:0000 DB:7f NvMXdIzc
+7f1422 php                    A:0000 X:00ff Y:0005 S:02f2 D:0000 DB:7f NvMXdIzc
+7f1423 phb                    A:0000 X:00ff Y:0005 S:02f1 D:0000 DB:7f NvMXdIzc
+7f1424 jsr $1460     [7f1460] A:0000 X:00ff Y:0005 S:02f0 D:0000 DB:7f NvMXdIzc
+7f1460 sep #$30               A:0000 X:00ff Y:0005 S:02ee D:0000 DB:7f NvMXdIzc
+7f1462 ldx #$00               A:0000 X:00ff Y:0005 S:02ee D:0000 DB:7f NvMXdIzc
+7f1464 phx                    A:0000 X:0000 Y:0005 S:02ee D:0000 DB:7f nvMXdIZc
+7f1465 plb                    A:0000 X:0000 Y:0005 S:02ed D:0000 DB:7f nvMXdIZc
+7f1466 rts                    A:0000 X:0000 Y:0005 S:02ee D:0000 DB:00 nvMXdIZc
+7f1427 pha                    A:0000 X:0000 Y:0005 S:02f0 D:0000 DB:00 nvMXdIZc
+7f1428 jsl $0c8009   [0c8009] A:0000 X:0000 Y:0005 S:02ef D:0000 DB:00 nvMXdIZc
+0c8009 jmp $818b     [0c818b] A:0000 X:0000 Y:0005 S:02ec D:0000 DB:00 nvMXdIZc
+0c818b jml $00dfb0   [00dfb0] A:0000 X:0000 Y:0005 S:02ec D:0000 DB:00 nvMXdIZc
+00dfb0 pha                    A:0000 X:0000 Y:0005 S:02ec D:0000 DB:00 nvMXdIZc
+00dfb1 lda #$00               A:0000 X:0000 Y:0005 S:02eb D:0000 DB:00 nvMXdIZc
+00dfb3 sta $2007     [002007] A:0000 X:0000 Y:0005 S:02eb D:0000 DB:00 nvMXdIZc
+00dfb6 sty $2004     [002004] A:0000 X:0000 Y:0005 S:02eb D:0000 DB:00 nvMXdIZc
+00dfb9 sta $2005     [002005] A:0000 X:0000 Y:0005 S:02eb D:0000 DB:00 nvMXdIZc
+00dfbc lda #$01               A:0000 X:0000 Y:0005 S:02eb D:0000 DB:00 nvMXdIZc
+00dfbe sta $2007     [002007] A:0001 X:0000 Y:0005 S:02eb D:0000 DB:00 nvMXdIzc
+00dfc1 lda #$ff               A:0001 X:0000 Y:0005 S:02eb D:0000 DB:00 nvMXdIzc
+00dfc3 sta $2006     [002006] A:00ff X:0000 Y:0005 S:02eb D:0000 DB:00 NvMXdIzc
+00dfc6 pla                    A:00ff X:0000 Y:0005 S:02eb D:0000 DB:00 NvMXdIzc
+00dfc7 rtl                    A:0000 X:0000 Y:0005 S:02ec D:0000 DB:00 nvMXdIZc
+7f142c pla                    A:0000 X:0000 Y:0005 S:02ef D:0000 DB:00 nvMXdIZc
+7f142d jsl $0c8003   [0c8003] A:0000 X:0000 Y:0005 S:02f0 D:0000 DB:00 nvMXdIZc
+0c8003 jmp $803e     [0c803e] A:0000 X:0000 Y:0005 S:02ed D:0000 DB:00 nvMXdIZc
+0c803e sta $24       [000024] A:0000 X:0000 Y:0005 S:02ed D:0000 DB:00 nvMXdIZc
+0c8040 asl a                  A:0000 X:0000 Y:0005 S:02ed D:0000 DB:00 nvMXdIZc
+0c8041 clc                    A:0000 X:0000 Y:0005 S:02ed D:0000 DB:00 nvMXdIZc
+0c8042 adc $24       [000024] A:0000 X:0000 Y:0005 S:02ed D:0000 DB:00 nvMXdIZc
+0c8044 sta $24       [000024] A:0000 X:0000 Y:0005 S:02ed D:0000 DB:00 nvMXdIZc
+0c8046 lda #$cb               A:0000 X:0000 Y:0005 S:02ed D:0000 DB:00 nvMXdIZc
+0c8048 sta $10       [000010] A:00cb X:0000 Y:0005 S:02ed D:0000 DB:00 NvMXdIzc
+0c804a lda #$82               A:00cb X:0000 Y:0005 S:02ed D:0000 DB:00 NvMXdIzc
+0c804c sta $11       [000011] A:0082 X:0000 Y:0005 S:02ed D:0000 DB:00 NvMXdIzc
+0c804e lda #$0c               A:0082 X:0000 Y:0005 S:02ed D:0000 DB:00 NvMXdIzc
+0c8050 sta $12       [000012] A:000c X:0000 Y:0005 S:02ed D:0000 DB:00 nvMXdIzc
+0c8052 ldy $24       [000024] A:000c X:0000 Y:0005 S:02ed D:0000 DB:00 nvMXdIzc
+0c8054 lda [$10],y   [0c82cb] A:000c X:0000 Y:0000 S:02ed D:0000 DB:00 nvMXdIZc
+0c8056 sta $31       [000031] A:00dd X:0000 Y:0000 S:02ed D:0000 DB:00 NvMXdIzc
+0c8058 iny                    A:00dd X:0000 Y:0000 S:02ed D:0000 DB:00 NvMXdIzc
+0c8059 lda [$10],y   [0c82cc] A:00dd X:0000 Y:0001 S:02ed D:0000 DB:00 nvMXdIzc
+0c805b sta $32       [000032] A:0082 X:0000 Y:0001 S:02ed D:0000 DB:00 NvMXdIzc
+0c805d iny                    A:0082 X:0000 Y:0001 S:02ed D:0000 DB:00 NvMXdIzc
+0c805e lda [$10],y   [0c82cd] A:0082 X:0000 Y:0002 S:02ed D:0000 DB:00 nvMXdIzc
+0c8060 sta $33       [000033] A:000c X:0000 Y:0002 S:02ed D:0000 DB:00 nvMXdIzc
+0c8062 ldy #$00               A:000c X:0000 Y:0002 S:02ed D:0000 DB:00 nvMXdIzc
+0c8064 lda [$31],y   [0c82dd] A:000c X:0000 Y:0000 S:02ed D:0000 DB:00 nvMXdIZc
+0c8066 sta $10       [000010] A:0088 X:0000 Y:0000 S:02ed D:0000 DB:00 NvMXdIzc
+0c8068 iny                    A:0088 X:0000 Y:0000 S:02ed D:0000 DB:00 NvMXdIzc
+0c8069 lda [$31],y   [0c82de] A:0088 X:0000 Y:0001 S:02ed D:0000 DB:00 nvMXdIzc
+0c806b sta $11       [000011] A:0095 X:0000 Y:0001 S:02ed D:0000 DB:00 NvMXdIzc
+0c806d iny                    A:0095 X:0000 Y:0001 S:02ed D:0000 DB:00 NvMXdIzc
+0c806e lda [$31],y   [0c82df] A:0095 X:0000 Y:0002 S:02ed D:0000 DB:00 nvMXdIzc
+0c8070 sta $12       [000012] A:000c X:0000 Y:0002 S:02ed D:0000 DB:00 nvMXdIzc
+0c8072 iny                    A:000c X:0000 Y:0002 S:02ed D:0000 DB:00 nvMXdIzc
+0c8073 lda [$31],y   [0c82e0] A:000c X:0000 Y:0003 S:02ed D:0000 DB:00 nvMXdIzc
+0c8075 sta $20       [000020] A:0009 X:0000 Y:0003 S:02ed D:0000 DB:00 nvMXdIzc
+0c8077 iny                    A:0009 X:0000 Y:0003 S:02ed D:0000 DB:00 nvMXdIzc
+0c8078 lda [$31],y   [0c82e1] A:0009 X:0000 Y:0004 S:02ed D:0000 DB:00 nvMXdIzc
+0c807a sta $21       [000021] A:00e0 X:0000 Y:0004 S:02ed D:0000 DB:00 NvMXdIzc
+0c807c lda #$00               A:00e0 X:0000 Y:0004 S:02ed D:0000 DB:00 NvMXdIzc
+0c807e sta $22       [000022] A:0000 X:0000 Y:0004 S:02ed D:0000 DB:00 nvMXdIZc
+0c8080 lda #$13               A:0000 X:0000 Y:0004 S:02ed D:0000 DB:00 nvMXdIZc
+0c8082 sta $23       [000023] A:0013 X:0000 Y:0004 S:02ed D:0000 DB:00 nvMXdIzc
+0c8084 jsr $810a     [0c810a] A:0013 X:0000 Y:0004 S:02ed D:0000 DB:00 nvMXdIzc
+0c810a rep #$30               A:0013 X:0000 Y:0004 S:02eb D:0000 DB:00 nvMXdIzc
+0c810c lda $20       [000020] A:0013 X:0000 Y:0004 S:02eb D:0000 DB:00 nvmxdIzc
+0c810e eor #$ffff             A:e009 X:0000 Y:0004 S:02eb D:0000 DB:00 NvmxdIzc
+0c8111 clc                    A:1ff6 X:0000 Y:0004 S:02eb D:0000 DB:00 nvmxdIzc
+0c8112 adc #$0001             A:1ff6 X:0000 Y:0004 S:02eb D:0000 DB:00 nvmxdIzc
+0c8115 asl a                  A:1ff7 X:0000 Y:0004 S:02eb D:0000 DB:00 nvmxdIzc
+0c8116 tax                    A:3fee X:0000 Y:0004 S:02eb D:0000 DB:00 nvmxdIzc
+0c8117 clc                    A:3fee X:3fee Y:0004 S:02eb D:0000 DB:00 nvmxdIzc
+0c8118 adc $10       [000010] A:3fee X:3fee Y:0004 S:02eb D:0000 DB:00 nvmxdIzc
+0c811a bcc $8166     [0c8166] A:d576 X:3fee Y:0004 S:02eb D:0000 DB:00 NvmxdIzc
+0c8166 sep #$30               A:d576 X:3fee Y:0004 S:02eb D:0000 DB:00 NvmxdIzc
+0c8168 lda #$01               A:d576 X:00ee Y:0004 S:02eb D:0000 DB:00 NvMXdIzc
+0c816a jsr $81dc     [0c81dc] A:d501 X:00ee Y:0004 S:02eb D:0000 DB:00 nvMXdIzc
+0c81dc ldx $2140     [002140] A:d501 X:00ee Y:0004 S:02e9 D:0000 DB:00 nvMXdIzc
+SPC Read 0
+0c81df bne $81dc     [0c81dc] A:d501 X:0000 Y:0004 S:02e9 D:0000 DB:00 nvMXdIZc
+0c81e1 cmp #$01               A:d501 X:0000 Y:0004 S:02e9 D:0000 DB:00 nvMXdIZc
+0c81e3 beq $81f6     [0c81f6] A:d501 X:0000 Y:0004 S:02e9 D:0000 DB:00 nvMXdIZC
+0c81f6 sta $2140     [002140] A:d501 X:0000 Y:0004 S:02e9 D:0000 DB:00 nvMXdIZC
+SPC Write 0 <= 01
+0c81f9 cmp $2140     [002140] A:d501 X:0000 Y:0004 S:02e9 D:0000 DB:00 nvMXdIZC
+SPC Read 0
+0c81fc bne $81f9     [0c81f9] A:d501 X:0000 Y:0004 S:02e9 D:0000 DB:00 nvMXdIzC
+0c81f9 cmp $2140     [002140] A:d501 X:0000 Y:0004 S:02e9 D:0000 DB:00 nvMXdIzC
+SPC Read 0
+0c81fc bne $81f9     [0c81f9] A:d501 X:0000 Y:0004 S:02e9 D:0000 DB:00 nvMXdIzC
+0c81f9 cmp $2140     [002140] A:d501 X:0000 Y:0004 S:02e9 D:0000 DB:00 nvMXdIzC
+SPC Read 0
+0c81fc bne $81f9     [0c81f9] A:d501 X:0000 Y:0004 S:02e9 D:0000 DB:00 nvMXdIzC
+0c81f9 cmp $2140     [002140] A:d501 X:0000 Y:0004 S:02e9 D:0000 DB:00 nvMXdIzC
+SPC Read 0
+0c81fc bne $81f9     [0c81f9] A:d501 X:0000 Y:0004 S:02e9 D:0000 DB:00 nvMXdIzC
+0c81f9 cmp $2140     
+
+
+
+Programmcode kopieren nach RAM 
+
+7f006e <- 0ab331 Different ist 0x744D3D
+7f0244 <- 0ab4d7 Differenz ist 0x744D6D
+7f2d6d <- 0ad767 Differenz ist 0x745606
+
+
+
+00df06 iny                    A:8012 X:006e Y:b330 S:02f3 D:0000 DB:7f nVMxdIzc
+00df07 beq $df01     [00df01] A:8012 X:006e Y:b331 S:02f3 D:0000 DB:7f NVMxdIzc
+00df09 lda [$5a],y   [0ab331] A:8012 X:006e Y:b331 S:02f3 D:0000 DB:7f NVMxdIzc
+00df0b sta $0000,x   [7f006e] A:804c X:006e Y:b331 S:02f3 D:0000 DB:7f nVMxdIzc
+00df0e inx                    A:804c X:006e Y:b331 S:02f3 D:0000 DB:7f nVMxdIzc
+00df0f dec $62       [000062] A:804c X:006f Y:b331 S:02f3 D:0000 DB:7f nVMxdIzc
+00df11 bpl $df06     [00df06] A:804c X:006f Y:b331 S:02f3 D:0000 DB:7f nVMxdIzc
+00df06 iny                    A:804c X:006f Y:b331 S:02f3 D:0000 DB:7f nVMxdIzc
+00df07 beq $df01     [00df01] A:804c X:006f Y:b332 S:02f3 D:0000 DB:7f NVMxdIzc
+00df09 lda [$5a],y   [0ab332] A:804c X:006f Y:b332 S:02f3 D:0000 DB:7f NVMxdIzc
+00df0b sta $0000,x   [7f006f] A:8083 X:006f Y:b332 S:02f3 D:0000 DB:7f NVMxdIzc
+00df0e inx                    A:8083 X:006f Y:b332 S:02f3 D:0000 DB:7f NVMxdIzc
+00df0f dec $62       [000062] A:8083 X:0070 Y:b332 S:02f3 D:0000 DB:7f nVMxdIzc
+00df11 bpl $df06     [00df06] A:8083 X:0070 Y:b332 S:02f3 D:0000 DB:7f nVMxdIzc
+
+00df09 lda [$5a],y   [0ab4d7] A:8002 X:0244 Y:b4d7 S:02f3 D:0000 DB:7f NVMxdIzc
+00df0b sta $0000,x   [7f0244] A:808d X:0244 Y:b4d7 S:02f3 D:0000 DB:7f NVMxdIzc
+
+00df09 lda [$5a],y   [0ad767] A:80a9 X:2d6d Y:d767 S:02f3 D:0000 DB:7f NVMxdIzc
+00df0b sta $0000,x   [7f2d6d] A:80b3 X:2d6d Y:d767 S:02f3 D:0000 DB:7f NVMxdIzc
+
+
+00df09 lda [$5a],y   [0ac43a] A:8048 X:1428 Y:c43a S:02f3 D:0000 DB:7f NVMxdIzc
+00df0b sta $0000,x   [7f1428] A:8022 X:1428 Y:c43a S:02f3 D:0000 DB:7f nVMxdIzc
+
+
+
+
+7f1428 jsl $0c8009   [0c8009] A:0000 X:0000 Y:0005 S:02ef D:0000 DB:00 nvMXdIZc Sprung in die Soundroutine
+
+7f1428 <- 0ac43a
+
+00054430  1c 4c 14 13 08 8b 20 60  14 48 22 09 80 0c 68 22  |.L.... `.H"...h"|
+                                         ___________
+
+                                         
+grep -A 1 'jsr\|jsl\|rts\|rtl\|SPC Write' trace-011.log  > trace-009-reduced.log
+
+
+
+Soundtest mit Tracer
+
+zuerst immer BGM 0 abspielen
+Tracer 0c8191 phx                    A:0000 X:0000 Y:0000 S:02ee D:0000 DB:00 nvMXdIZC BGM 0
+Tracer 0c8191 phx                    A:0000 X:0000 Y:0000 S:02ee D:0000 DB:00 nvMXdIZC BGM 0
+Tracer 0c8191 phx                    A:0000 X:0000 Y:0000 S:02ee D:0000 DB:00 nvMXdIZC BGM 0
+Tracer 0c8191 phx                    A:0000 X:0000 Y:0000 S:02ee D:0000 DB:00 nvMXdIZC BGM 0
+
+dann 1 und 2
+
+Tracer 0c8191 phx                    A:0001 X:0000 Y:0001 S:02ee D:0000 DB:00 nvMXdIzC BGM 1
+
+Tracer 0c8191 phx                    A:0002 X:0000 Y:0002 S:02ee D:0000 DB:00 nvMXdIzC BGM 2
+
+dann 3 laden
+
+Tracer 0c818b lda #$03               A:0000 X:0000 Y:0003 S:02ec D:0000 DB:00 nvMXdIZc Block für Welt 1 laden
+Tracer 0c8191 phx                    A:0000 X:0000 Y:0000 S:02ee D:0000 DB:00 nvMXdIZc BGM 3
+Tracer 0c8191 phx                    A:0001 X:0000 Y:0001 S:02ee D:0000 DB:00 nvMXdIzC BGM 4
+Tracer 0c8191 phx                    A:0006 X:0000 Y:0006 S:02ee D:0000 DB:00 nvMXdIzC BGM 5
+Tracer 0c8191 phx                    A:0005 X:0000 Y:0005 S:02ee D:0000 DB:00 nvMXdIzC BGM 6
+Tracer 0c8191 phx                    A:0004 X:0000 Y:0004 S:02ee D:0000 DB:00 nvMXdIzC BGM 7
+
+dann 8 laden
+
+Tracer 0c818b lda #$03               A:0001 X:0000 Y:0008 S:02ec D:0000 DB:00 nvMXdIZC Block für Welt 2 laden
+Tracer 0c8191 phx                    A:0000 X:0000 Y:0000 S:02ee D:0000 DB:00 nvMXdIZC BGM 8
+Tracer 0c8191 phx                    A:0001 X:0000 Y:0001 S:02ee D:0000 DB:00 nvMXdIzC BGM 9
+Tracer 0c8191 phx                    A:0006 X:0000 Y:0006 S:02ee D:0000 DB:00 nvMXdIzC BGM 10
+Tracer 0c8191 phx                    A:0004 X:0000 Y:0004 S:02ee D:0000 DB:00 nvMXdIzC BGM 11
+Tracer 0c8191 phx                    A:0005 X:0000 Y:0005 S:02ee D:0000 DB:00 nvMXdIzC BGM 12
+
+Tracer 0c818b lda #$03               A:0002 X:0000 Y:000d S:02ec D:0000 DB:00 nvMXdIZC BGM 13
+
+
+0c818b Aufrufe
+
+Titel und Ingame:
+0 Tracer 0c818b lda #$03               A:4204 X:0000 Y:0006 S:02f1 D:0000 DB:00 nvMXdIZC
+0 Tracer 0c818b lda #$03               A:0000 X:0000 Y:0030 S:02f2 D:0000 DB:00 nvMXdIZC
+0 Tracer 0c818b lda #$03               A:4204 X:0000 Y:0006 S:02f1 D:0000 DB:00 nvMXdIZC
+0 Tracer 0c818b lda #$03               A:0000 X:0000 Y:0030 S:02f2 D:0000 DB:00 nvMXdIZC
+1 Tracer 0c818b lda #$03               A:c800 X:0000 Y:0002 S:02f5 D:0000 DB:00 nvMXdIZC
+2 Tracer 0c818b lda #$03               A:7800 X:0000 Y:00d1 S:02f5 D:0000 DB:00 nvMXdIZC
+3 Tracer 0c818b lda #$03               A:7500 X:0000 Y:0071 S:02f5 D:0000 DB:02 nvMXdIZC
+4 Tracer 0c818b lda #$03               A:b400 X:0000 Y:00e0 S:02f5 D:0000 DB:02 nvMXdIZC
+3 Tracer 0c818b lda #$03               A:9000 X:0000 Y:002c S:02f5 D:0000 DB:02 nvMXdIZC
+4 Tracer 0c818b lda #$03               A:6300 X:0000 Y:00e0 S:02f5 D:0000 DB:02 nvMXdIZC
+? Tracer 0c818b lda #$03               A:000e X:0000 Y:00ab S:02f9 D:0000 DB:00 nvMXdIZC
+0 Tracer 0c818b lda #$03               A:4304 X:0000 Y:0069 S:02ef D:0000 DB:00 nvMXdIZC
+
+
+
+Soundtest:
+0 Tracer 0c818b lda #$03               A:0004 X:0000 Y:0001 S:02ef D:0000 DB:00 nvMXdIZc
+1 Tracer 0c818b lda #$03               A:0000 X:0000 Y:0003 S:02ec D:0000 DB:00 nvMXdIZc
+2 Tracer 0c818b lda #$03               A:0001 X:0000 Y:0008 S:02ec D:0000 DB:00 nvMXdIZC
+3 Tracer 0c818b lda #$03               A:0002 X:0000 Y:000d S:02ec D:0000 DB:00 nvMXdIZC
+4 Tracer 0c818b lda #$03               A:0003 X:0000 Y:0012 S:02ec D:0000 DB:00 nvMXdIZC
+
