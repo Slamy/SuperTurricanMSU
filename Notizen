@@ -411,3 +411,215 @@ Soundtest:
 3 Tracer 0c818b lda #$03               A:0002 X:0000 Y:000d S:02ec D:0000 DB:00 nvMXdIZC
 4 Tracer 0c818b lda #$03               A:0003 X:0000 Y:0012 S:02ec D:0000 DB:00 nvMXdIZC
 
+
+Soundeffekt abspielen
+SPC Write 1 <= 23
+SPC Write 2 <= 80
+SPC Write 0 <= 05
+SPC Write 0 <= 00
+
+
+Leiser im Pausenbildschirm
+
+SPC Write 1 <= 30
+SPC Write 2 <= 30
+SPC Write 0 <= 06
+SPC Write 0 <= 00
+
+Lauter, wenn weiter
+SPC Write 1 <= 30
+SPC Write 2 <= 7f
+SPC Write 0 <= 06
+SPC Write 0 <= 00
+
+Langsam das Musikstück bis zu 0 ausfaden
+SPC Write 1 <= 18
+SPC Write 2 <= 00
+SPC Write 0 <= 06
+SPC Write 0 <= 00
+
+Langsam auf 0, wenn Intro mit Start beendet
+
+SPC Write 1 <= 30
+SPC Write 2 <= 00
+SPC Write 0 <= 06
+SPC Write 0 <= 00
+
+
+
+Routine für leiser machen für Pausenbildschirm
+
+0085bc jsl $0c800f   [0c800f] A:0080 X:0080 Y:0001 S:02fa D:0000 DB:00 nvMXdIzC
+0c800f jmp $81bf     [0c81bf] A:0080 X:0080 Y:0001 S:02f7 D:0000 DB:00 nvMXdIzC
+0c81bf phx                    A:0080 X:0080 Y:0001 S:02f7 D:0000 DB:00 nvMXdIzC
+0c81c0 ldx $2140     [002140] A:0080 X:0080 Y:0001 S:02f6 D:0000 DB:00 nvMXdIzC
+SPC Read 0
+0c81c3 bne $81c0     [0c81c0] A:0080 X:0000 Y:0001 S:02f6 D:0000 DB:00 nvMXdIZC
+0c81c5 sty $2141     [002141] A:0080 X:0000 Y:0001 S:02f6 D:0000 DB:00 nvMXdIZC
+SPC Write 1 <= 01
+0c81c8 sta $2142     [002142] A:0080 X:0000 Y:0001 S:02f6 D:0000 DB:00 nvMXdIZC
+SPC Write 2 <= 80
+0c81cb lda #$05               A:0080 X:0000 Y:0001 S:02f6 D:0000 DB:00 nvMXdIZC
+0c81cd sta $2140     [002140] A:0005 X:0000 Y:0001 S:02f6 D:0000 DB:00 nvMXdIzC
+SPC Write 0 <= 05
+0c81d0 cmp $2140     [002140] A:0005 X:0000 Y:0001 S:02f6 D:0000 DB:00 nvMXdIzC
+SPC Read 0
+0c81d3 bne $81d0     [0c81d0] A:0005 X:0000 Y:0001 S:02f6 D:0000 DB:00 nvMXdIzC
+0c81d0 cmp $2140     [002140] A:0005 X:0000 Y:0001 S:02f6 D:0000 DB:00 nvMXdIzC
+SPC Read 0
+0c81d3 bne $81d0     [0c81d0] A:0005 X:0000 Y:0001 S:02f6 D:0000 DB:00 nvMXdIzC
+0c81d0 cmp $2140     [002140] A:0005 X:0000 Y:0001 S:02f6 D:0000 DB:00 nvMXdIzC
+SPC Read 0
+0c81d3 bne $81d0     [0c81d0] A:0005 X:0000 Y:0001 S:02f6 D:0000 DB:00 nvMXdIzC
+0c81d0 cmp $2140     [002140] A:0005 X:0000 Y:0001 S:02f6 D:0000 DB:00 nvMXdIzC
+SPC Read 0
+0c81d3 bne $81d0     [0c81d0] A:0005 X:0000 Y:0001 S:02f6 D:0000 DB:00 nvMXdIZC
+0c81d5 lda #$00               A:0005 X:0000 Y:0001 S:02f6 D:0000 DB:00 nvMXdIZC
+0c81d7 sta $2140     [002140] A:0000 X:0000 Y:0001 S:02f6 D:0000 DB:00 nvMXdIZC
+SPC Write 0 <= 00
+0c81da plx                    A:0000 X:0000 Y:0001 S:02f6 D:0000 DB:00 nvMXdIZC
+0c81db rtl                    A:0000 X:0080 Y:0001 S:02f7 D:0000 DB:00 NvMXdIzC
+
+
+
+
+Abspielen des Zuglevels - Falscher Song
+
+RAM @ 7f142f geschrieben 00
+RAM @ 7f1430 geschrieben 00
+RAM @ 7f1443 geschrieben 00
+RAM @ 7f1444 geschrieben 00
+RAM @ 7f1445 geschrieben 00
+RAM @ 7f1446 geschrieben 00
+Tracer 0c818b lda #$03               A:9000 X:0000 Y:002c S:02f5 D:0000 DB:02 nvMXdIZC
+Tracer 0c803e jml $00ff2b   [00ff2b] A:0002 X:0018 Y:002c S:02f5 D:0000 DB:02 NvMXdIzc
+Wechsel zu Soundbasis? 2
+RAM @ 7e1770 geschrieben 02
+Tracer 0c816a jsr $81dc     [0c81dc] A:e201 X:0040 Y:0007 S:02f3 D:0000 DB:02 nvMXdIzc
+Tracer 0c8191 jml $00fea0   [00fea0] A:0000 X:0018 Y:0006 S:02f5 D:0000 DB:02 nvMXdIzC
+Wechsel zu Subtune 6
+MSU Control 00
+0xbf0 gelesen 2
+MSU Track Lo 01
+MSU Track Hi 00
+MSU Control 01
+MSU Volume ff
+
+
+
+NMI ausgelöst!
+008000 rep #$30               A:0001 X:0000 Y:0080 S:02f8 D:0000 DB:00 nvMXdIzC
+008002 pha                    A:0001 X:0000 Y:0080 S:02f8 D:0000 DB:00 nvmxdIzC
+008003 phx                    A:0001 X:0000 Y:0080 S:02f6 D:0000 DB:00 nvmxdIzC
+008004 phy                    A:0001 X:0000 Y:0080 S:02f4 D:0000 DB:00 nvmxdIzC
+008005 phb                    A:0001 X:0000 Y:0080 S:02f2 D:0000 DB:00 nvmxdIzC
+008006 phk                    A:0001 X:0000 Y:0080 S:02f1 D:0000 DB:00 nvmxdIzC
+008007 plb                    A:0001 X:0000 Y:0080 S:02f0 D:0000 DB:00 nvmxdIzC
+008008 lda $0300     [000300] A:0001 X:0000 Y:0080 S:02f1 D:0000 DB:00 nvmxdIZC
+00800b and #$00ff             A:2b01 X:0000 Y:0080 S:02f1 D:0000 DB:00 nvmxdIzC
+00800e cmp #$00eb             A:0001 X:0000 Y:0080 S:02f1 D:0000 DB:00 nvmxdIzC
+008011 bne $8019     [008019] A:0001 X:0000 Y:0080 S:02f1 D:0000 DB:00 NvmxdIzc
+008019 jsr $9961     [009961] A:0001 X:0000 Y:0080 S:02f1 D:0000 DB:00 NvmxdIzc
+009961 rep #$30               A:0001 X:0000 Y:0080 S:02ef D:0000 DB:00 NvmxdIzc
+009963 inc $0301     [000301] A:0001 X:0000 Y:0080 S:02ef D:0000 DB:00 NvmxdIzc
+009966 sep #$30               A:0001 X:0000 Y:0080 S:02ef D:0000 DB:00 nvmxdIzc
+009968 lda $0300     [000300] A:0001 X:0000 Y:0080 S:02ef D:0000 DB:00 nvMXdIzc
+00996b beq $9972     [009972] A:0001 X:0000 Y:0080 S:02ef D:0000 DB:00 nvMXdIzc
+00996d dec $0300     [000300] A:0001 X:0000 Y:0080 S:02ef D:0000 DB:00 nvMXdIzc
+009970 beq $9973     [009973] A:0001 X:0000 Y:0080 S:02ef D:0000 DB:00 nvMXdIZc
+
+
+0ac447 -> 7f1435
+
+
+
+Blauer Laser Schuss
+
+SPC Write 1 <= 19
+SPC Write 2 <= 80
+SPC Write 0 <= 05
+SPC Write 0 <= 00
+
+Und als Programm:
+
+
+008398 beq $83aa     [0083aa] A:0010 X:001c Y:0080 S:02fc D:0000 DB:00 NvMXdIzc
+00839a lda $ac,x     [0000c8] A:0010 X:001c Y:0080 S:02fc D:0000 DB:00 NvMXdIzc
+00839c ldy $ad,x     [0000c9] A:0080 X:001c Y:0080 S:02fc D:0000 DB:00 NvMXdIzc
+00839e jsl $0c800f   [0c800f] A:0080 X:001c Y:0019 S:02fc D:0000 DB:00 nvMXdIzc
+0c800f jmp $81bf     [0c81bf] A:0080 X:001c Y:0019 S:02f9 D:0000 DB:00 nvMXdIzc
+0c81bf phx                    A:0080 X:001c Y:0019 S:02f9 D:0000 DB:00 nvMXdIzc
+0c81c0 ldx $2140     [002140] A:0080 X:001c Y:0019 S:02f8 D:0000 DB:00 nvMXdIzc
+SPC Read 0
+0c81c3 bne $81c0     [0c81c0] A:0080 X:0000 Y:0019 S:02f8 D:0000 DB:00 nvMXdIZc
+0c81c5 sty $2141     [002141] A:0080 X:0000 Y:0019 S:02f8 D:0000 DB:00 nvMXdIZc
+SPC Write 1 <= 19
+0c81c8 sta $2142     [002142] A:0080 X:0000 Y:0019 S:02f8 D:0000 DB:00 nvMXdIZc
+SPC Write 2 <= 80
+0c81cb lda #$05               A:0080 X:0000 Y:0019 S:02f8 D:0000 DB:00 nvMXdIZc
+0c81cd sta $2140     [002140] A:0005 X:0000 Y:0019 S:02f8 D:0000 DB:00 nvMXdIzc
+SPC Write 0 <= 05
+0c81d0 cmp $2140     [002140] A:0005 X:0000 Y:0019 S:02f8 D:0000 DB:00 nvMXdIzc
+SPC Read 0
+0c81d3 bne $81d0     [0c81d0] A:0005 X:0000 Y:0019 S:02f8 D:0000 DB:00 nvMXdIzC
+0c81d0 cmp $2140     [002140] A:0005 X:0000 Y:0019 S:02f8 D:0000 DB:00 nvMXdIzC
+SPC Read 0
+0c81d3 bne $81d0     [0c81d0] A:0005 X:0000 Y:0019 S:02f8 D:0000 DB:00 nvMXdIzC
+0c81d0 cmp $2140     [002140] A:0005 X:0000 Y:0019 S:02f8 D:0000 DB:00 nvMXdIzC
+SPC Read 0
+0c81d3 bne $81d0     [0c81d0] A:0005 X:0000 Y:0019 S:02f8 D:0000 DB:00 nvMXdIzC
+0c81d0 cmp $2140     [002140] A:0005 X:0000 Y:0019 S:02f8 D:0000 DB:00 nvMXdIzC
+SPC Read 0
+0c81d3 bne $81d0     [0c81d0] A:0005 X:0000 Y:0019 S:02f8 D:0000 DB:00 nvMXdIzC
+0c81d0 cmp $2140     [002140] A:0005 X:0000 Y:0019 S:02f8 D:0000 DB:00 nvMXdIzC
+SPC Read 0
+0c81d3 bne $81d0     [0c81d0] A:0005 X:0000 Y:0019 S:02f8 D:0000 DB:00 nvMXdIZC
+0c81d5 lda #$00               A:0005 X:0000 Y:0019 S:02f8 D:0000 DB:00 nvMXdIZC
+0c81d7 sta $2140     [002140] A:0000 X:0000 Y:0019 S:02f8 D:0000 DB:00 nvMXdIZC
+SPC Write 0 <= 00
+0c81da plx                    A:0000 X:0000 Y:0019 S:02f8 D:0000 DB:00 nvMXdIZC
+0c81db rtl                    A:0000 X:001c Y:0019 S:02f9 D:0000 DB:00 nvMXdIzC
+0083a2 lda $cd       [0000cd] A:0000 X:001c Y:0019 S:02fc D:0000 DB:00 nvMXdIzC
+0083a4 inc                    A:001c X:001c Y:0019 S:02fc D:0000 DB:00 nvMXdIzC
+0083a5 inc                    A:001d X:001c Y:0019 S:02fc D:0000 DB:00 nvMXdIzC
+0083a6 and #$1e               A:001e X:001c Y:0019 S:02fc D:0000 DB:00 nvMXdIzC
+0083a8 sta $cd       [0000cd] A:001e X:001c Y:0019 S:02fc D:0000 DB:00 nvMXdIzC
+0083aa sep #$30               A:001e X:001c Y:0019 S:02fc D:0000 DB:00 nvMXdIzC
+0083ac lda #$01               A:001e X:001c Y:0019 S:02fc D:0000 DB:00 nvMXdIzC
+0083ae sta $0300     [000300] A:0001 X:001c Y:0019 S:02fc D:0000 DB:00 nvMXdIzC
+0083b1 lda $0300     [000300] A:0001 X:001c Y:0019 S:02fc D:0000 DB:00 nvMXdIzC
+0083b4 bne $83b1     [0083b1] A:0001 X:001c Y:0019 S:02fc D:0000 DB:00 nvMXdIzC
+0083b1 lda $0300     [000300] A:0001 X:001c Y:0019 S:02fc D:0000 DB:00 nvMXdIzC
+0083b4 bne $83b1     [0083b1] A:0001 X:001c Y:0019 S:02fc D:0000 DB:00 nvMXdIzC
+
+
+Gelber Bobbels Schuss
+
+SPC Write 1 <= 12
+SPC Write 2 <= 80
+SPC Write 0 <= 05
+SPC Write 0 <= 00
+
+Blauer Schuss 2. Stufe
+
+SPC Write 1 <= 1a
+SPC Write 2 <= 80
+SPC Write 0 <= 05
+SPC Write 0 <= 00
+
+Blauer Schuss 3. Stufe
+
+SPC Write 1 <= 1b
+SPC Write 2 <= 80
+SPC Write 0 <= 05
+SPC Write 0 <= 00
+
+
+
+
+
+
+
+TODO
+- Letzer Boss hat falsche Musik
+- Lautstärke ab und zu wieder auf 100%

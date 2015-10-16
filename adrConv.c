@@ -1,3 +1,4 @@
+#include <stdio.h>
 
 void fileaddr(unsigned int addr) {
 
@@ -16,7 +17,7 @@ void archaddr(unsigned int addr) {
 }
 
 
-void main()
+int main()
 {
 	fileaddr(0x0c8006);
 	fileaddr(0x5fb0+0x8000);
@@ -32,4 +33,18 @@ void main()
 	archaddr(6897);
 	fileaddr(0x0c8191);
 	
+	archaddr(563);
+	archaddr(70160);
+	archaddr(180728);
+	archaddr(220169);
+	archaddr(223143);
+	archaddr(397184);
+	
+	archaddr(397215);
+	archaddr(397221);
+	
+	
+	
+	
+	return 0;
 }
