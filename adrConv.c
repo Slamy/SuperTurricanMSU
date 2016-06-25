@@ -43,7 +43,7 @@ int main()
 	archaddr(397215);
 	archaddr(397221);
 	
-	
+	fileaddr(0x0abbed);
 	
 	
 	return 0;

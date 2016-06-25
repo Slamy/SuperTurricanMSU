@@ -325,7 +325,7 @@ scope MSU_NMI: {
 	sep #$30
 	
 	lda.w fadeOut
-	beq noFade //Wenn in fadeOut etwas anderes steht als 0, so dekrentiere und nimm es als Lautstärke
+	beq noFade //Wenn in fadeOut etwas anderes steht als 0, so dekrementiere und nimm es als Lautstärke
 	
 	dec
 	dec
@@ -410,6 +410,11 @@ scope MSU_stopPlayback_withNMIDisable: {
 	jml $00d332
 }
 
+//scope Title_ChangeText: {
+//	lda #$0000
+//	rtl
+//}
+
 //Ausgeführt, wenn neue SPC Daten geladen werden.
 seek($00ff5b)
 	jml MSU_stopPlayback
@@ -455,3 +460,56 @@ seek($00d32d)
 //- Lautstärke wird am Level-Ende wieder auf voll zurückgesetzt
 //- Level 5-1 hat normale Musik O.o
 
+
+//Titeltext verändern
+//Bei 7f1920 eine gute Chance einzusteigen.
+
+//7f191c plb                    A:2232 X:007f Y:0070 S:02f4 D:4300 DB:7f nvMXdIzc
+//7f191d rep #$30               A:2232 X:007f Y:0070 S:02f5 D:4300 DB:7f nvMXdIzc
+//7f191f tax                    A:2232 X:007f Y:0070 S:02f5 D:4300 DB:7f nvmxdIzc
+//7f1920 lda #$0000             A:2232 X:2232 Y:0070 S:02f5 D:4300 DB:7f nvmxdIzc
+//7f1923 tcd                    A:0000 X:2232 Y:0070 S:02f5 D:4300 DB:7f nvmxdIZc
+//7f1924 tay                    A:0000 X:2232 Y:0070 S:02f5 D:0000 DB:7f nvmxdIZc
+//7f1925 stx $eb       [0000eb] A:0000 X:2232 Y:0000 S:02f5 D:0000 DB:7f nvmxdIZc
+
+
+//Instruktion bei 7f1920 wird von 7f1240 geladen.
+//Das kommt aber wiederrum von 7f11b6
+//Das kommt dann aber von 7f038b
+//Das kommt dann aber von 7f0144 etc.
+//Am Ende sind wir bei 0ab3b0. Im ROM ist das $533b0
+
+//seek($533b0)
+//	jsl Title_ChangeText
+
+origin ($54f8A)
+	db "-MSU " //LICEN
+seek($0abe87) //S
+	db 'H'
+origin ($53c8c) //E
+	db 'A'
+origin ($53bed) //D
+	db 'C'
+seek($0abbee) //' '
+	db 'K'
+origin ($54f93) //NINTENDO
+	db " BY SLAMY- "
+	
+
+//origin ($54f8A)
+//	db "ABCDE" //LICEN
+//seek($0abe87) //S
+//	db 'F'
+//origin ($53c8c) //E
+//	db 'G'
+//origin ($53bed) //D
+//	db 'H'
+//seek($0abbee) //' '
+//	db 'I'
+//origin ($54f93) //NINTENDO
+//	db "JKLMNOPQRST"
+
+
+
+
+	
