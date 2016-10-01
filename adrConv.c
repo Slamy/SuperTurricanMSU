@@ -1,11 +1,12 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 void fileaddr(unsigned int addr) {
 
 	unsigned int addr2;
 	
 	addr2 = ((addr & 0x7f0000) >> 1) + (addr & 0x7fff);
-	printf("virtuell %x -> physical %x\n",addr,addr2);
+	printf("virtuell 0x%x -> physical 0x%x\n",addr,addr2);
 }
 
 void archaddr(unsigned int addr) {
@@ -13,12 +14,13 @@ void archaddr(unsigned int addr) {
 	unsigned int addr2;
 	
 	addr2 = ((addr & 0x7f8000) << 1) + 0x8000 + (addr & 0x7fff);
-	printf("physical %x -> virtuell %x\n",addr,addr2);
+	printf("physical 0x%x -> virtuell 0x%x\n",addr,addr2);
 }
 
 
-int main()
+int main(int argc, char **argv)
 {
+	/*
 	fileaddr(0x0c8006);
 	fileaddr(0x5fb0+0x8000);
 	
@@ -44,6 +46,23 @@ int main()
 	archaddr(397221);
 	
 	fileaddr(0x0abbed);
+	fileaddr(0x0acf8a);
+	fileaddr(0x0ac6d2);
+	fileaddr(0xac4c6);
+	fileaddr(0xab33d);
+	fileaddr(0x0ab3b0);
+	*/
+	
+	if (argc==2)
+	{
+		char *inStr=argv[1];
+		//printf("Input: %s\n",inStr);
+		
+		int adr = strtol(inStr, NULL, 16);
+		
+		fileaddr(adr);
+		//printf("Virtuell %x -> Physical %x\n", adr, fileaddr(adr));
+	}
 	
 	
 	return 0;

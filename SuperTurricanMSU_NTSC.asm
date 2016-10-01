@@ -18,25 +18,12 @@ constant MSU_STATUS_AUDIO_REPEAT(%00100000)
 constant MSU_STATUS_AUDIO_BUSY($40)
 constant MSU_STATUS_DATA_BUSY(%10000000)
 
-// Constants
-if {defined EMULATOR_VOLUME} {
-	constant FULL_VOLUME($50)
-	constant DUCKED_VOLUME($20)
-} else {
-	constant FULL_VOLUME($FF)
-	constant DUCKED_VOLUME($60)
-}
-
-constant FADE_DELTA(FULL_VOLUME/45)
 
 // Variables
 variable currentSoundbase($2C0)
 variable fadeOut($2C1)
+variable workTemp($2C2)
 
-// FADE_STATE possibles values
-constant FADE_STATE_IDLE($00)
-constant FADE_STATE_FADEOUT($01)
-constant FADE_STATE_FADEIN($02)
 
 // **********
 // * Macros *
@@ -84,7 +71,7 @@ seek($0c803e)
 //0c8191 phx                    A:0002 X:0000 Y:0002 S:02ee D:0000 DB:00 nvMXdIzC
 
 //0ac453 -> 22 -> 7f1443
-//0ac454 -> 06 -> 7f1444
+//;0ac454 -> 06 -> 7f1444
 //0ac441 -> 80 -> 7f142f -> 80 -> 7f1445
 //0ac442 -> 0c -> 7f1430 -> 0c -> 7f1446
 
@@ -108,31 +95,45 @@ seek($0c803e)
 //	jsl MSU_playTRACK
 
 
-seek($0c8191)
+seek($0c8191) //physical 0x60191
 	jml MSU_playTRACK
 
-seek($0085c4)
+seek($0085c4) //physical 0x5c4
 	jsl MSU_setVolume
 
-seek($0085f4)
+seek($0085f4) //physical 0x5f4
 	jsl MSU_setVolume
 
-seek($008852) //Lautstärke setzen nach starten von Level
+seek($008852) //physical 0x852, Lautstärke setzen nach starten von Level
 	jsl MSU_setVolume
 
-seek($0ac447)
+
+//Decrunching Pfade für den modifizierten Jump bei $0ac447. 2 Fliegen mit einer Klappe
+
+// 0ac447 -> 7f1435 -> 7f144b -> 7f145a
+//                            -> 7f1495
+
+// 0ac448 -> 7f1436 -> 7f144c -> 7f145b
+//                            -> 7f1496
+
+// 0ac449 -> 7f1437 -> 7f144d -> 7f145c
+//                            -> 7f1497
+
+// 0ac44a -> 7f1438 -> 7f144e -> 7f145d
+//                            -> 7f1498
+seek($0ac447) //physical 0x54447
 	jsl MSU_setVolume
 	
-seek($0084b7)
+seek($0084b7) //phyiscal 0x4b7
 	jsl MSU_setVolume
 
-seek($009af9)
+seek($009af9) //physical 0x1af9
 	jsl MSU_setVolume
 
 
 
 //seek($dfb0) //0x5fb0 im headerless ROM
-seek($fea0) //7ea0 im headerless ROM
+seek($fea0) //physical 0x7ea0 im headerless ROM
 scope MSU_playTRACK: {
 	//Y Register ist der Subtune
 	pha
@@ -381,10 +382,40 @@ noFadeActive:
 	pla
 	
 	//Der SPC ist zu laut... zumindest beim sd2snes.
-	//Wir halbieren seine Lautstärke testweise
-	lsr
+	//>>1 ist ganz ok. Der SPC ist aber immer noch eine Idee zu laut
+	//>>2 ist ganz ok. Der SPC ist aber manchmal zu leise.
+	//>>1 + >>2
 	
-
+	//Wir halbieren seine Lautstärke testweise
+	//if !{defined EMULATOR_VOLUME} {
+	
+	//lsr >>1 + >>2
+	//sta.b workTemp
+	//lsr
+	//clc
+	//adc.b workTemp
+	
+	//>>2: Schon ganz gut. Aber ein kleines bissle lauter könnte es.
+	//lsr
+	//lsr
+	
+	//>>2 + >>3
+	//lsr
+	//lsr
+	//sta.b workTemp
+	//lsr
+	//clc
+	//adc.b workTemp
+	
+	//}
+	
+	if {defined EMULATOR_VOLUME} {
+	//Feste Lautstärke für SPC?
+	lda.b #$7f
+	} else {
+	lda.b #$30
+	}
+	
 	jml $0c8012
 }
 
@@ -416,13 +447,13 @@ scope MSU_stopPlayback_withNMIDisable: {
 //}
 
 //Ausgeführt, wenn neue SPC Daten geladen werden.
-seek($00ff5b)
-	jml MSU_stopPlayback
+//seek($00ff5b) //physical 0x7f5b
+//	jml MSU_stopPlayback
 
 
 //Verantwortlich für FadeOut
 //009adb jsl $0c8012   [0c8012] A:0000 X:000a Y:0018 S:02f1 D:0000 DB:01 nvMXdIzc
-seek($009adb)
+seek($009adb) //physical 0x1adb
 	jsl MSU_setVolume
 
 //Lautstärke für Soundeffekte
@@ -445,7 +476,7 @@ seek($009adb)
 //008008 lda $0300     [000300] A:0001 X:0000 Y:0080 S:02f1 D:0000 DB:00 nvmxdIZC
 //00800b and #$00ff             A:2c01 X:0000 Y:0080 S:02f1 D:0000 DB:00 nvmxdIzC
 
-seek($008007)
+seek($008007) //physical 0x7
 	jml MSU_NMI
 
 
@@ -453,7 +484,8 @@ seek($008007)
 //00d32d lda #$00               A:0000 X:0000 Y:0019 S:02f9 D:0000 DB:00 nvMxdIZC
 //00d32f sta $4200     [004200] A:0000 X:0000 Y:0019 S:02f9 D:0000 DB:00 nvMxdIZC
 //00d332 lda #$ff               A:0000 X:0000 Y:0019 S:02f9 D:0000 DB:00 nvMxdIZC
-seek($00d32d)
+
+seek($00d32d) //physical 0x532d
 	jml MSU_stopPlayback_withNMIDisable
 
 //TODO
@@ -482,18 +514,18 @@ seek($00d32d)
 //seek($533b0)
 //	jsl Title_ChangeText
 
-origin ($54f8A)
-	db "-MSU " //LICEN
-seek($0abe87) //S
-	db 'H'
-origin ($53c8c) //E
-	db 'A'
-origin ($53bed) //D
-	db 'C'
-seek($0abbee) //' '
-	db 'K'
-origin ($54f93) //NINTENDO
-	db " BY SLAMY- "
+//origin ($54f8A)
+//	db "-MSU " //LICEN
+//seek($0abe87) //S
+//	db 'H'
+//origin ($53c8c) //E
+//	db 'A'
+//origin ($53bed) //D
+//	db 'C'
+//seek($0abbee) //' '
+//	db 'K'
+//origin ($54f93) //NINTENDO
+//	db " BY SLAMY- "
 	
 
 //origin ($54f8A)
@@ -510,6 +542,62 @@ origin ($54f93) //NINTENDO
 //	db "JKLMNOPQRST"
 
 
+//7f19e8 jsr $1917     [7f1917] A:2232 X:0000 Y:0070 S:02f7 D:4300 DB:7f nvmxdIzc
+//00df09 lda [$5a],y   [0ac6d2] A:8022 X:172c Y:c6d2 S:02f3 D:0000 DB:7f NVMxdIzc
+//Hier springt er zur Ausgabe des Titelbild Strings über DMA. Der String ist also ausgepackt im Speicher
 
 
+//7f19e8 jsr $1917     [7f1917] A:2232 X:0000 Y:0070 S:02f7 D:4300 DB:7f nvmxdIzc A:2
+//7f1917 sep #$30               A:2232 X:0000 Y:0070 S:02f5 D:4300 DB:7f nvmxdIzc A:2
+//7f1919 ldx #$7f               A:2232 X:0000 Y:0070 S:02f5 D:4300 DB:7f nvMXdIzc A:2
+//7f191b phx                    A:2232 X:007f Y:0070 S:02f5 D:4300 DB:7f nvMXdIzc A:2
+//7f191c plb                    A:2232 X:007f Y:0070 S:02f4 D:4300 DB:7f nvMXdIzc A:2
+//7f191d rep #$30               A:2232 X:007f Y:0070 S:02f5 D:4300 DB:7f nvMXdIzc A:2
+//7f191f tax                    A:2232 X:007f Y:0070 S:02f5 D:4300 DB:7f nvmxdIzc A:2
+//7f1920 lda #$0000             A:2232 X:2232 Y:0070 S:02f5 D:4300 DB:7f nvmxdIzc A:2
+//7f1923 tcd                    A:0000 X:2232 Y:0070 S:02f5 D:4300 DB:7f nvmxdIZc
+//7f1924 tay                    A:0000 X:2232 Y:0070 S:02f5 D:0000 DB:7f nvmxdIZc
+//7f1925 stx $eb       [0000eb] A:0000 X:2232 Y:0000 S:02f5 D:0000 DB:7f nvmxdIZc
+//7f1927 rep #$20               A:0000 X:2232 Y:0000 S:02f5 D:0000 DB:7f nvmxdIZc
+//7f1929 lda #
+
+
+//0ac822 -> 7f1919
+//0ac823 -> 7f191a
+//0ac824 -> 7f191b
+//0ac825 -> 7f191c
+seek($0ac822) //physical 0x54822
+	jsl ModTitle
+
+
+seek($dfb0) //0x5fb0 im headerless ROM
+ModTitle:
+	pha
+	phx
 	
+	ldx.b #0
+ModTitle_loop:
+	
+	lda.l modString,x
+	beq ModTitle_loopEnd
+	sta.w $2282,x
+	inx
+	bra ModTitle_loop
+	
+ModTitle_loopEnd:
+
+	plx
+	pla
+	
+	
+	//ersetzte zerstörte Instruktion
+	ldx #$7f
+	phx
+	plb
+	rtl
+
+modString:
+	db " SLAMY MSU HACK 0.2 ",0
+
+
+
