@@ -22,7 +22,7 @@ constant MSU_STATUS_DATA_BUSY(%10000000)
 // Variables
 variable currentSoundbase($2C0)
 variable fadeOut($2C1)
-variable workTemp($2C2)
+//variable workTemp($2C2)
 
 
 // **********
@@ -44,7 +44,7 @@ macro seek(variable offset) {
 //0c8044 sta $24       [000024] A:0003 X:0000 Y:0008 S:02ed D:0000 DB:00 nvMXdIzc
 
 
-seek($0c803e)
+seek($0c803e) //physical 0x6003e
 	jml MSU_setSoundBase
   
 //0c8191 wird gecallt, wenn ein Subtune der aktuellen Sounddatenbank gespielt werden soll.
@@ -447,8 +447,8 @@ scope MSU_stopPlayback_withNMIDisable: {
 //}
 
 //Ausgeführt, wenn neue SPC Daten geladen werden.
-seek($00ff5b) //physical 0x7f5b
-	jml MSU_stopPlayback //FIXME ich hack hier meinen eigenen Code O.o
+//seek($00ff5b) //physical 0x7f5b
+//	jml MSU_stopPlayback //FIXME ich hack hier meinen eigenen Code O.o
 
 
 //Verantwortlich für FadeOut
@@ -597,7 +597,7 @@ ModTitle_loopEnd:
 	rtl
 
 modString:
-	db " SLAMY MSU HACK 0.2 ",0
+	db " SLAMY MSU HACK 0.3 ",0
 
 
 
