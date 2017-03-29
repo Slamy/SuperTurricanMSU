@@ -61,6 +61,7 @@ int main(int argc, char **argv)
 		int adr = strtol(inStr, NULL, 16);
 		
 		fileaddr(adr);
+        archaddr(adr);
 		//printf("Virtuell %x -> Physical %x\n", adr, fileaddr(adr));
 	}
 	

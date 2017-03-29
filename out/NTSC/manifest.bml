@@ -1,0 +1,36 @@
+board region=ntsc
+  rom name=supertur_msu1.sfc size=0x80000
+    map address=00-7d,80-ff:8000-ffff mask=0x8000
+    map address=40-6f,c0-ef:0000-7fff mask=0x8000
+  
+  msu1
+    map address=00-3f,80-bf:2000-2007
+    rom name=supertur_msu1.msu
+    track number=1 name=supertur_msu1-1.pcm
+    track number=2 name=supertur_msu1-2.pcm
+    track number=3 name=supertur_msu1-3.pcm
+    track number=4 name=supertur_msu1-4.pcm
+    track number=5 name=supertur_msu1-5.pcm
+    track number=6 name=supertur_msu1-6.pcm
+    track number=7 name=supertur_msu1-7.pcm
+    track number=8 name=supertur_msu1-8.pcm
+    track number=9 name=supertur_msu1-9.pcm
+    track number=10 name=supertur_msu1-10.pcm
+    track number=11 name=supertur_msu1-11.pcm
+    track number=12 name=supertur_msu1-12.pcm
+    track number=13 name=supertur_msu1-13.pcm
+    track number=14 name=supertur_msu1-14.pcm
+    track number=15 name=supertur_msu1-15.pcm
+    track number=16 name=supertur_msu1-16.pcm
+    track number=17 name=supertur_msu1-17.pcm
+    track number=18 name=supertur_msu1-18.pcm
+    track number=19 name=supertur_msu1-19.pcm
+    track number=20 name=supertur_msu1-20.pcm
+    track number=21 name=supertur_msu1-21.pcm
+    track number=22 name=supertur_msu1-22.pcm
+
+information
+  region: NTSC
+  title: Super Turrican USA(MSU-1)
+
+  

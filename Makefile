@@ -2,54 +2,63 @@ CFLAGS= -g
 
 all: adrConv slamyWav2msu \
 	out/supertur_msu1.msu \
-	out/supertur_msu1_pal_sd2snes.ips \
-	out/supertur_msu1_pal_higan.ips \
-	out/supertur_msu1_ntsc_higan.ips \
-	out/supertur_msu1_ntsc_sd2snes.ips
+	out/PAL/supertur_msu1.bps \
+	out/NTSC/supertur_msu1.bps \
+	out/sd2snesRevF/PAL/supertur_msu1.bps \
+	out/sd2snesRevF/NTSC/supertur_msu1.bps
 
 
-out/supertur_msu1_pal_sd2snes.ips: SuperTurricanMSU_PAL.asm
-	cp -r Super\ Turrican\ \(Europe\).sfc out/supertur_msu1_pal_sd2snes.sfc
-	bass                    -o out/supertur_msu1_pal_sd2snes.sfc SuperTurricanMSU_PAL.asm
-	wine flips --create Super\ Turrican\ \(Europe\).sfc out/supertur_msu1_pal_sd2snes.sfc out/supertur_msu1_pal_sd2snes.ips
+out/PAL/supertur_msu1.bps: SuperTurricanMSU_PAL.asm Makefile
+	cp -r Super\ Turrican\ \(Europe\).sfc out/PAL/supertur_msu1.sfc
+	bass -d EMULATOR_VOLUME -o out/PAL/supertur_msu1.sfc SuperTurricanMSU_PAL.asm
+	wine flips --create Super\ Turrican\ \(Europe\).sfc out/PAL/supertur_msu1.sfc out/PAL/supertur_msu1.bps
 
-out/supertur_msu1_pal_higan.ips: SuperTurricanMSU_PAL.asm
-	cp -r Super\ Turrican\ \(Europe\).sfc out/supertur_msu1_pal_higan.sfc
-	bass -d EMULATOR_VOLUME -o out/supertur_msu1_pal_higan.sfc   SuperTurricanMSU_PAL.asm
-	wine flips --create Super\ Turrican\ \(Europe\).sfc out/supertur_msu1_pal_higan.sfc out/supertur_msu1_pal_higan.ips
-	
-	#cp out/supertur_msu1_pal_higan.sfc /home/andre/Emulation/Super\ Famicom/supertur_msu1.sfc/program.rom
+out/NTSC/supertur_msu1.bps: SuperTurricanMSU_NTSC.asm Makefile
+	cp -r Super\ Turrican\ \(USA\).sfc out/NTSC/supertur_msu1.sfc
+	bass -d EMULATOR_VOLUME -o out/NTSC/supertur_msu1.sfc SuperTurricanMSU_NTSC.asm
+	wine flips --create Super\ Turrican\ \(Europe\).sfc out/NTSC/supertur_msu1.sfc out/NTSC/supertur_msu1.bps
 
-out/supertur_msu1_ntsc_higan.ips: SuperTurricanMSU_NTSC.asm
-	cp -r Super\ Turrican\ \(USA\).sfc out/supertur_msu1_ntsc_higan.sfc
-	bass -d EMULATOR_VOLUME -o out/supertur_msu1_ntsc_higan.sfc   SuperTurricanMSU_NTSC.asm
-	wine flips --create Super\ Turrican\ \(Europe\).sfc out/supertur_msu1_ntsc_higan.sfc out/supertur_msu1_ntsc_higan.ips
-	
-	
+out/sd2snesRevF/PAL/supertur_msu1.bps: SuperTurricanMSU_PAL.asm Makefile
+	cp -r Super\ Turrican\ \(Europe\).sfc out/sd2snesRevF/PAL/supertur_msu1.sfc
+	bass -o out/sd2snesRevF/PAL/supertur_msu1.sfc SuperTurricanMSU_PAL.asm
+	wine flips --create Super\ Turrican\ \(Europe\).sfc out/sd2snesRevF/PAL/supertur_msu1.sfc out/sd2snesRevF/PAL/supertur_msu1.bps
 
-out/supertur_msu1_ntsc_sd2snes.ips: SuperTurricanMSU_NTSC.asm
-	cp -r Super\ Turrican\ \(USA\).sfc out/supertur_msu1_ntsc_sd2snes.sfc
-	bass                    -o out/supertur_msu1_ntsc_sd2snes.sfc SuperTurricanMSU_NTSC.asm
-	wine flips --create Super\ Turrican\ \(Europe\).sfc out/supertur_msu1_ntsc_sd2snes.sfc out/supertur_msu1_ntsc_sd2snes.ips
-	
-	cp out/supertur_msu1_ntsc_sd2snes.sfc /home/andre/Emulation/Super\ Famicom/supertur_msu1.sfc/program.rom
+out/sd2snesRevF/NTSC/supertur_msu1.bps: SuperTurricanMSU_NTSC.asm Makefile
+	cp -r Super\ Turrican\ \(USA\).sfc out/sd2snesRevF/NTSC/supertur_msu1.sfc
+	bass -o out/sd2snesRevF/NTSC/supertur_msu1.sfc SuperTurricanMSU_NTSC.asm
+	wine flips --create Super\ Turrican\ \(Europe\).sfc out/sd2snesRevF/NTSC/supertur_msu1.sfc out/sd2snesRevF/NTSC/supertur_msu1.bps
+
 
 out/supertur_msu1.msu:
 	touch out/supertur_msu1.msu
 
-sdcard: all
-	cp out/supertur_msu1_ntsc_sd2snes.sfc /media/andre/9016-4EF8/MSU/SuperTurricanNTSC/supertur_msu1.sfc
-	cp out/supertur_msu1_pal_sd2snes.sfc /media/andre/9016-4EF8/MSU/SuperTurricanPAL/supertur_msu1.sfc
 
-compare: out/supertur_msu1.sfc
-	hexdump out/supertur_msu1.sfc -C > compareA
-	hexdump Super\ Turrican\ \(Europe\).sfc -C > compareB
-	diff compareA compareB
+sdcard: all
+	cp out/NTSC/supertur_msu1.sfc /media/andre/9016-4EF8/MSU/SuperTurricanNTSC/supertur_msu1.sfc
+	cp out/PAL/supertur_msu1.sfc /media/andre/9016-4EF8/MSU/SuperTurricanPAL/supertur_msu1.sfc
+
+comparePAL: out/PAL/supertur_msu1.bps
+	hexdump out/PAL/supertur_msu1.sfc -Cv > compareA
+	hexdump Super\ Turrican\ \(Europe\).sfc -Cv > compareB
+	meld compareA compareB
+
+compareNTSC: out/NTSC/supertur_msu1.bps
+	hexdump out/NTSC/supertur_msu1.sfc -Cv > compareA
+	hexdump Super\ Turrican\ \(USA\).sfc -Cv > compareB
+	meld compareA compareB
 
 clean:
-	rm -f out/*.sfc out/*.ips
+	rm -f out/*.sfc out/*.ips out/*.bps out/*/*.sfc out/*/*.ips out/*/*.bps out/*/*/*.ips out/*/*/*.bps
 
 adrConv: adrConv.c
 
 slamyWav2msu: slamyWav2msu.c
+
+higanPAL: all
+	cp out/PAL/supertur_msu1.sfc /home/andre/Emulation/Super\ Famicom/supertur_msu1.sfc
+	cp out/PAL/manifest.bml /home/andre/Emulation/Super\ Famicom/supertur_msu1.sfc/
+
+higanNTSC: all
+	cp out/NTSC/supertur_msu1.sfc /home/andre/Emulation/Super\ Famicom/supertur_msu1.sfc
+	cp out/NTSC/manifest.bml /home/andre/Emulation/Super\ Famicom/supertur_msu1.sfc/
 

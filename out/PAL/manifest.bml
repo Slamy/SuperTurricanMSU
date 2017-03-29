@@ -1,12 +1,11 @@
-unverified
-
-cartridge region=PAL
-  rom name=program.rom size=0x80000
-  map id=rom address=00-7f,80-ff:8000-ffff mask=0x8000
+board region=pal
+  rom name=supertur_msu1.sfc size=0x80000
+    map address=00-7d,80-ff:8000-ffff mask=0x8000
+    map address=40-6f,c0-ef:0000-7fff mask=0x8000
   
   msu1
-    rom name=supertur_msu1.msu size=0x0000
-    map id=io address=00-3f,80-bf:2000-2007
+    map address=00-3f,80-bf:2000-2007
+    rom name=supertur_msu1.msu
     track number=1 name=supertur_msu1-1.pcm
     track number=2 name=supertur_msu1-2.pcm
     track number=3 name=supertur_msu1-3.pcm
@@ -31,6 +30,7 @@ cartridge region=PAL
     track number=22 name=supertur_msu1-22.pcm
 
 information
-  title: supertur_msu1
+  region: PAL
+  title: Super Turrican (MSU-1)
 
   
