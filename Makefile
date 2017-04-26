@@ -62,3 +62,14 @@ higanNTSC: all
 	cp out/NTSC/supertur_msu1.sfc /home/andre/Emulation/Super\ Famicom/supertur_msu1.sfc
 	cp out/NTSC/manifest.bml /home/andre/Emulation/Super\ Famicom/supertur_msu1.sfc/
 
+higanLegacyPAL: all
+	cp out/sd2snesRevF/PAL/supertur_msu1.sfc /home/andre/Emulation/Super\ Famicom/supertur_msu1.sfc
+	cp out/PAL/manifest.bml /home/andre/Emulation/Super\ Famicom/supertur_msu1.sfc/
+	
+higanLegacyNTSC: all
+	cp out/sd2snesRevF/NTSC/supertur_msu1.sfc /home/andre/Emulation/Super\ Famicom/supertur_msu1.sfc
+	cp out/NTSC/manifest.bml /home/andre/Emulation/Super\ Famicom/supertur_msu1.sfc/
+
+
+md5sum: all
+	md5sum *.sfc ./out/*/*.sfc ./out/*/*/*.sfc 

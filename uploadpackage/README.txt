@@ -6,21 +6,17 @@ the European or the US version and patch it.
 
 Expected MD5SUM of original ROMs to be sure you got the right thing.
 
-Europe   90c9fe8386a7f69de475c58bb8de01f7  Super Turrican (Europe).sfc
-USA      24d31806dd79e6e2be36ef27b51c8858  Super Turrican (USA).sfc
+Europe  PAL    90c9fe8386a7f69de475c58bb8de01f7  Super Turrican (Europe).sfc
+USA     NTSC   24d31806dd79e6e2be36ef27b51c8858  Super Turrican (USA).sfc
 
 Expected MD5SUMs of patched ROMs to be sure the patcher worked correctly:
 
-Europe   5dd39094185a8250ba679a65f4c0a4ad  supertur_msu1.sfc
-USA      eda51e112e89938326a90c9f97c04980  supertur_msu1.sfc
+Europe  PAL    97c335ee26ae368b734a304c0e9d0b89  supertur_msu1.sfc
+USA     NTSC   bb86afd45871a361a94b6982c22c5b02  supertur_msu1.sfc
 
 
 Patch the ROM file using Flips or similar software to get the expected ROM file.
 Use the result with Higan or SD2SNES Rev. G and higher.
-
-Europe   58d47c6e8d4d9fd5879fdb7fb9ea2d38  supertur_msu1.sfc
-USA      3e02f72b36be7e48704caf63a4848956  supertur_msu1.sfc
-
 
 
 -- For SD2SNES Rev F. and older --
@@ -28,6 +24,9 @@ USA      3e02f72b36be7e48704caf63a4848956  supertur_msu1.sfc
 Old versions of the sd2snes have a reduced MSU volume compared to higan
 and newer versions of the board.
 Use the versions from subfolder sd2snesRevF and proceed as usual.
+
+Europe  PAL    6251bdac096f7fb163d9eba5fe88f91d  supertur_msu1.sfc
+USA     NTSC   ea14c8c74034bea6893a6644284e28af  supertur_msu1.sfc
 
 
 --Credits--
@@ -42,7 +41,11 @@ If you find any bugs or run into issues please contact me through my blog:
 
 
 --Known Bugs--
-During the title screen the cursor usually blinks. On a real SNES it doesn't do that until you move it. (only affects NTSC version)
+- During the title screen the cursor usually blinks. On a real SNES it doesn't do that until you move it. (only affects NTSC version)
+- If you enable "Ingame Hooks" on your sd2snes the title screen is lacks my version number.
+  I really hope this is the only thing affected
+- Soundglitch could still be around somewhere. A soundeffect doesn't stop playing. The game crashes on the next time the SPC is loaded with data.
+
 
   
 --Disclaimer--
@@ -50,11 +53,12 @@ Please keep in mind that you get this software package as is. If it damages your
 
 
 --Changelog--
-2017-03-XX v0.4
+2017-03-29 v0.4
 	Assumed to fix Soundglitch (Removed 16 bit writes to $2140, further tests needed)
 	Fix swapped music of stages 1-2 and 1-3
 	Replaced IPS by BPS and more cleaned up package
-	Moved pre rev.H sd2snes version into subfolder
+	Moved volume boosted sd2snes version for revision F and older into subfolder.
+	Now assumes to be run on higan or sd2snes rev G or newer.
 
 2016-10-02 v0.3
 	Added US NTSC version

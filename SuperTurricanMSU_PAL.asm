@@ -22,7 +22,7 @@ constant MSU_STATUS_DATA_BUSY(%10000000)
 // Variables
 variable currentSoundbase($2C0)
 variable fadeOut($2C1)
-//variable workTemp($2C2)
+variable workTemp($2C2)
 
 
 // **********
@@ -217,7 +217,7 @@ CheckAudioStatus2:
 	lda.b #0
 	sta.w fadeOut
 	
-	lda.b #$FF
+	lda.b #$BE
 	sta.w MSU_AUDIO_VOLUME
 	
 	// The MSU1 will now start playing.
@@ -328,12 +328,17 @@ scope MSU_NMI: {
 	lda.w fadeOut
 	beq noFade //Wenn in fadeOut etwas anderes steht als 0, so dekrementiere und nimm es als Lautstärke
 	
+	//Das Faden von 100% an sollte in 39 - 42 Frames abeschlossen sein. Warum habe ich vergessen.
+	//Aber es sollte wirklich. Ansonsten wird es kurz beim Faden wieder lauter....
+	if !{defined EMULATOR_VOLUME} {
+	dec //Teilbarkeit durch 6 herstellen
+	}
 	dec
 	dec
 	dec
 	dec
 	dec
-	dec
+
 	
 	sta.w MSU_AUDIO_VOLUME
 	sta.w fadeOut
@@ -348,12 +353,17 @@ noFade:
 }
 
 scope MSU_setVolume: {
-	
+	//Wenn die Lautstärk 0 ist, faden wir automatisch.
+	//Wenn nicht setzen wir ganz gewöhnlich.
 	cmp.b #$00
 	bne noFade
 	
 	pha
-	lda.b #252 //Muss durch 5 teilbar sein
+	if {defined EMULATOR_VOLUME} {
+	lda.b #190 //Muss durch 5 teilbar sein
+	} else {
+	lda.b #252 //Muss durch 6 teilbar sein
+	}
 	sta.w fadeOut
 	pla
 	
@@ -375,9 +385,28 @@ noFadeActive:
 	pla
 	
 	//Lautstärke vom SPC ist von 0 bis 7f in A
-	//Da die Lautstärke vom MSU von 0 bis ff geht, rechnen wir hier *2
+	//Da die Lautstärke vom MSU von 0 bis ff geht, rechnen wir hier um.
 	pha
-	asl
+
+	if {defined EMULATOR_VOLUME} {
+	//Bestehender Wert +  >>2 des Wertes. Das ist das gleiche wie Wert*1.25.
+	//Maximal wäre 7f + 1f = 9E
+	//sta.b workTemp
+	//lsr
+	//lsr
+	//clc
+	//adc.b workTemp
+	
+	//Bestehender Wert +  >>1 des Wertes. Das ist das gleiche wie Wert*1.5.
+	//Maximal wäre 7f + 3f = BE
+	sta.w workTemp
+	lsr
+	clc
+	adc.w workTemp
+	} else {
+	asl //0-7F linear auf 0-FF abbilden.
+	}
+	
 	sta.w MSU_AUDIO_VOLUME
 	pla
 	
