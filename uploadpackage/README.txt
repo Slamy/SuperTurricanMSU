@@ -53,6 +53,9 @@ Please keep in mind that you get this software package as is. If it damages your
 
 
 --Changelog--
+2017-07-17 v0.5
+	Fixed NTSC version. Patch file was broken.
+
 2017-03-29 v0.4
 	Assumed to fix Soundglitch (Removed 16 bit writes to $2140, further tests needed)
 	Fix swapped music of stages 1-2 and 1-3

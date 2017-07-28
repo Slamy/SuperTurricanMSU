@@ -16,7 +16,7 @@ out/PAL/supertur_msu1.bps: SuperTurricanMSU_PAL.asm Makefile
 out/NTSC/supertur_msu1.bps: SuperTurricanMSU_NTSC.asm Makefile
 	cp -r Super\ Turrican\ \(USA\).sfc out/NTSC/supertur_msu1.sfc
 	bass -d EMULATOR_VOLUME -o out/NTSC/supertur_msu1.sfc SuperTurricanMSU_NTSC.asm
-	wine flips --create Super\ Turrican\ \(Europe\).sfc out/NTSC/supertur_msu1.sfc out/NTSC/supertur_msu1.bps
+	wine flips --create Super\ Turrican\ \(USA\).sfc out/NTSC/supertur_msu1.sfc out/NTSC/supertur_msu1.bps
 
 out/sd2snesRevF/PAL/supertur_msu1.bps: SuperTurricanMSU_PAL.asm Makefile
 	cp -r Super\ Turrican\ \(Europe\).sfc out/sd2snesRevF/PAL/supertur_msu1.sfc
@@ -26,7 +26,7 @@ out/sd2snesRevF/PAL/supertur_msu1.bps: SuperTurricanMSU_PAL.asm Makefile
 out/sd2snesRevF/NTSC/supertur_msu1.bps: SuperTurricanMSU_NTSC.asm Makefile
 	cp -r Super\ Turrican\ \(USA\).sfc out/sd2snesRevF/NTSC/supertur_msu1.sfc
 	bass -o out/sd2snesRevF/NTSC/supertur_msu1.sfc SuperTurricanMSU_NTSC.asm
-	wine flips --create Super\ Turrican\ \(Europe\).sfc out/sd2snesRevF/NTSC/supertur_msu1.sfc out/sd2snesRevF/NTSC/supertur_msu1.bps
+	wine flips --create Super\ Turrican\ \(USA\).sfc out/sd2snesRevF/NTSC/supertur_msu1.sfc out/sd2snesRevF/NTSC/supertur_msu1.bps
 
 
 out/supertur_msu1.msu:
