@@ -1,75 +1,42 @@
 CFLAGS= -g
 
-all: adrConv slamyWav2msu \
-	out/supertur_msu1.msu \
-	out/PAL/supertur_msu1.bps \
-	out/NTSC/supertur_msu1.bps \
-	out/sd2snesRevF/PAL/supertur_msu1.bps \
-	out/sd2snesRevF/NTSC/supertur_msu1.bps
+all:	out/SuperTurricanSoundFix_PAL.bps \
+	out/SuperTurricanSoundFix_NTSC.bps \
 
+out/SuperTurricanSoundFix_PAL.bps: SuperTurricanSoundFix_PAL.asm Makefile
+	cp -r Super\ Turrican\ \(Europe\).sfc out/SuperTurricanSoundFix_PAL.sfc
+	bass -o out/SuperTurricanSoundFix_PAL.sfc SuperTurricanSoundFix_PAL.asm
+	wine flips --create Super\ Turrican\ \(Europe\).sfc out/SuperTurricanSoundFix_PAL.sfc out/SuperTurricanSoundFix_PAL.bps
 
-out/PAL/supertur_msu1.bps: SuperTurricanMSU_PAL.asm Makefile
-	cp -r Super\ Turrican\ \(Europe\).sfc out/PAL/supertur_msu1.sfc
-	bass -d EMULATOR_VOLUME -o out/PAL/supertur_msu1.sfc SuperTurricanMSU_PAL.asm
-	wine flips --create Super\ Turrican\ \(Europe\).sfc out/PAL/supertur_msu1.sfc out/PAL/supertur_msu1.bps
+out/SuperTurricanSoundFix_NTSC.bps: SuperTurricanSoundFix_NTSC.asm Makefile
+	cp -r Super\ Turrican\ \(USA\).sfc out/SuperTurricanSoundFix_NTSC.sfc
+	bass -o out/SuperTurricanSoundFix_NTSC.sfc SuperTurricanSoundFix_NTSC.asm
+	wine flips --create Super\ Turrican\ \(USA\).sfc out/SuperTurricanSoundFix_NTSC.sfc out/SuperTurricanSoundFix_NTSC.bps
 
-out/NTSC/supertur_msu1.bps: SuperTurricanMSU_NTSC.asm Makefile
-	cp -r Super\ Turrican\ \(USA\).sfc out/NTSC/supertur_msu1.sfc
-	bass -d EMULATOR_VOLUME -o out/NTSC/supertur_msu1.sfc SuperTurricanMSU_NTSC.asm
-	wine flips --create Super\ Turrican\ \(USA\).sfc out/NTSC/supertur_msu1.sfc out/NTSC/supertur_msu1.bps
-
-out/sd2snesRevF/PAL/supertur_msu1.bps: SuperTurricanMSU_PAL.asm Makefile
-	cp -r Super\ Turrican\ \(Europe\).sfc out/sd2snesRevF/PAL/supertur_msu1.sfc
-	bass -o out/sd2snesRevF/PAL/supertur_msu1.sfc SuperTurricanMSU_PAL.asm
-	wine flips --create Super\ Turrican\ \(Europe\).sfc out/sd2snesRevF/PAL/supertur_msu1.sfc out/sd2snesRevF/PAL/supertur_msu1.bps
-
-out/sd2snesRevF/NTSC/supertur_msu1.bps: SuperTurricanMSU_NTSC.asm Makefile
-	cp -r Super\ Turrican\ \(USA\).sfc out/sd2snesRevF/NTSC/supertur_msu1.sfc
-	bass -o out/sd2snesRevF/NTSC/supertur_msu1.sfc SuperTurricanMSU_NTSC.asm
-	wine flips --create Super\ Turrican\ \(USA\).sfc out/sd2snesRevF/NTSC/supertur_msu1.sfc out/sd2snesRevF/NTSC/supertur_msu1.bps
-
-
-out/supertur_msu1.msu:
-	touch out/supertur_msu1.msu
-
-
+	
 sdcard: all
-	cp out/NTSC/supertur_msu1.sfc /media/andre/9016-4EF8/MSU/SuperTurricanNTSC/supertur_msu1.sfc
-	cp out/PAL/supertur_msu1.sfc /media/andre/9016-4EF8/MSU/SuperTurricanPAL/supertur_msu1.sfc
+	cp out/SuperTurricanSoundFix_PAL.sfc /media/andre/9016-4EF8/SuperTurricanSoundFix_PAL.sfc
+	cp out/SuperTurricanSoundFix_NTSC.sfc /media/andre/9016-4EF8/SuperTurricanSoundFix_NTSC.sfc
 
-comparePAL: out/PAL/supertur_msu1.bps
-	hexdump out/PAL/supertur_msu1.sfc -Cv > compareA
+comparePAL: out/SuperTurricanSoundFix_PAL.bps
+	hexdump out/SuperTurricanSoundFix_PAL.sfc -Cv > compareA
 	hexdump Super\ Turrican\ \(Europe\).sfc -Cv > compareB
 	meld compareA compareB
 
-compareNTSC: out/NTSC/supertur_msu1.bps
-	hexdump out/NTSC/supertur_msu1.sfc -Cv > compareA
+compareNTSC: out/SuperTurricanSoundFix_NTSC.bps
+	hexdump out/SuperTurricanSoundFix_NTSC.sfc -Cv > compareA
 	hexdump Super\ Turrican\ \(USA\).sfc -Cv > compareB
 	meld compareA compareB
 
 clean:
-	rm -f out/*.sfc out/*.ips out/*.bps out/*/*.sfc out/*/*.ips out/*/*.bps out/*/*/*.ips out/*/*/*.bps
-
-adrConv: adrConv.c
-
-slamyWav2msu: slamyWav2msu.c
+	rm -f out/*.sfc out/*.ips out/*.bps out/*/*.bps out/*/*.ips
 
 higanPAL: all
-	cp out/PAL/supertur_msu1.sfc /home/andre/Emulation/Super\ Famicom/supertur_msu1.sfc
-	cp out/PAL/manifest.bml /home/andre/Emulation/Super\ Famicom/supertur_msu1.sfc/
+	cp out/SuperTurricanSoundFix_PAL.sfc /home/andre/Emulation/Super\ Famicom/supertur_msu1.sfc/supertur_msu1.sfc
+
+higanOrigPAL: all
+	cp Super\ Turrican\ \(Europe\).sfc /home/andre/Emulation/Super\ Famicom/supertur_msu1.sfc/supertur_msu1.sfc
 
 higanNTSC: all
-	cp out/NTSC/supertur_msu1.sfc /home/andre/Emulation/Super\ Famicom/supertur_msu1.sfc
-	cp out/NTSC/manifest.bml /home/andre/Emulation/Super\ Famicom/supertur_msu1.sfc/
+	cp out/SuperTurricanSoundFix_NTSC.sfc /home/andre/Emulation/Super\ Famicom/supertur_msu1.sfc/supertur_msu1.sfc
 
-higanLegacyPAL: all
-	cp out/sd2snesRevF/PAL/supertur_msu1.sfc /home/andre/Emulation/Super\ Famicom/supertur_msu1.sfc
-	cp out/PAL/manifest.bml /home/andre/Emulation/Super\ Famicom/supertur_msu1.sfc/
-	
-higanLegacyNTSC: all
-	cp out/sd2snesRevF/NTSC/supertur_msu1.sfc /home/andre/Emulation/Super\ Famicom/supertur_msu1.sfc
-	cp out/NTSC/manifest.bml /home/andre/Emulation/Super\ Famicom/supertur_msu1.sfc/
-
-
-md5sum: all
-	md5sum *.sfc ./out/*/*.sfc ./out/*/*/*.sfc 
